@@ -7,17 +7,15 @@ function App() {
 
   useEffect(() => {
     fetch('/ping').then(res => res.json()).then((j) => {
-      console.log(j)
       setPing(j.data)
     })
   }, [])
 
-  console.log(ping)
   return (
     <div className="App">
       <header className="App-header">
         
-        Hello World - {ping} 
+        Welcome to the pings of pongs - {ping} 
       </header>
     </div>
   );
