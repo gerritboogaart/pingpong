@@ -1,20 +1,35 @@
 import './App.css';
 import { useEffect, useState } from 'react';
+import { Notes } from './components/Notes';
+
+const FAKE = [
+  {
+    body: 'Hello World',
+    bg: 'green'
+  }
+]
 
 function App() {
-  const [ping, setPing] = useState('ping')
+    const [notes, setNotes] = useState(FAKE)
+  // const [ping, setPing] = useState('ping')
 
-  useEffect(() => {
-    fetch('/ping').then(res => res.json()).then((j) => {
-      setPing(j.data)
+  // useEffect(() => {
+ 
+  //   })
+  // }, [])
+
+  const renderNotes = () => {
+    return notes.map(n => {
+      return <Notes bg={n.bg} body={n.body} />
     })
-  }, [])
+  }
+
 
   return (
     <div className="App">
       <header className="App-header">
-        
-        Welcome to the pings of pongs - {ping} 
+        {renderNotes()}
+       
       </header>
     </div>
   );
