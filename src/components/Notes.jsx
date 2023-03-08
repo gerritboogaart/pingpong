@@ -17,17 +17,19 @@ const Note = styled.div`
 export const Notes = ({bg, body, zindex, left, top}) => {
     const [display, setDisplay] = useState('block')
     const [pos, setPos] = useState({ left, top })
-    console.log(bg, body)
+    const [zz, setZz] = useState(zindex)
+    console.log(bg, body,zz)
 
     return <Note 
         display={display}
         bg={bg || 'white'} 
-        zindex={zindex}
+        zindex={zz}
         left={pos.left}
         top={pos.top}
         onDragEnd={(e) => {
             console.log('stop: ', e)
             setPos({left: e.clientX, top: e.clientY})
+            setZz(Number(zz) + 10)
         }}
         onDragStart={(e) => {
             console.log('start', e)
