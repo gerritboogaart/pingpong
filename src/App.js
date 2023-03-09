@@ -6,6 +6,7 @@ import { NewNote } from './components/NewNote';
 
 const FAKE = [
   {
+    title: 'First one',
     body: 'Hello World',
     bg: 'green',
     left: '100',
@@ -13,6 +14,7 @@ const FAKE = [
     zIndex: '1'
   },
   {
+    title: 'second',
     body: 'Second Hello World',
     bg: 'red',
     left: '300',
@@ -34,7 +36,7 @@ const Button = styled.div`
 `
 
 function App() {
-    const [notes, setNotes] = useState(FAKE)
+    const [notes, setNotes] = useState([])
   // const [ping, setPing] = useState('ping')
   const [showForm, setShowForm] = useState(false)
 
@@ -51,7 +53,19 @@ function App() {
     }
   }, [])
 
-
+  const addNote = (note) => {
+    const zIndex = notes.reduce((acc, note) => {
+      if (Number(note.zIndex) > acc) acc = Number(note.zIndex)
+      return acc
+    }, 0).toString()
+   
+    const newNote = {...note, left: '500', top: '300', zIndex }
+    console.log('saving', zIndex, newNote)
+    const nextNotes = [...notes, newNote]
+    setNotes(nextNotes)
+    const json = JSON.stringify(nextNotes)
+    localStorage.setItem('notes', json)
+  }
 
   const renderNotes = () => {
     return notes.map(n => {
@@ -61,6 +75,7 @@ function App() {
         zindex={n.zIndex} 
         left={n.left}
         top={n.top}
+        title={n.title}
       />
     })
   }
@@ -71,7 +86,7 @@ function App() {
       <header className="App-header">
         <Button onClick={() => setShowForm(!showForm)}>New Note</Button>
         {renderNotes()}
-        {showForm && <NewNote />}
+        {showForm && <NewNote hideModal={setShowForm} addNote={addNote} />}
       </header>
     </div>
   );

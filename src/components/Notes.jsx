@@ -3,8 +3,8 @@ import { useState } from "react"
 import styled from "styled-components"
 
 const Note = styled.div`
-    width: 100px;
-    height: 100px;
+    width: 250px;
+    height: 150px;
     background: ${props => props.bg};
     position: absolute;
     z-index: ${props => props.zindex};
@@ -12,9 +12,25 @@ const Note = styled.div`
     top: ${props => props.top}px;
     cursor: move;
     display: ${props => props.display};
+    font-size: 14px;
 
 `
-export const Notes = ({bg, body, zindex, left, top}) => {
+const Title = styled.div`
+    font-size: 16px;
+    line-height: 2rem;
+    width: 100%;
+    border-bottom: 1px solid lightgrey;
+`
+
+const Body = styled.div`
+    padding: 10px;
+    font-size: 13px;
+    text-overflow: ellipsis;
+    height: 92px;
+    overflow: hidden;
+    text-align: left;
+`
+export const Notes = ({bg, body, zindex, left, top, title}) => {
     const [display, setDisplay] = useState('block')
     const [pos, setPos] = useState({ left, top })
     const [zz, setZz] = useState(zindex)
@@ -38,5 +54,8 @@ export const Notes = ({bg, body, zindex, left, top}) => {
 
         }}
         draggable={true}
-        >{body}</Note>
+        >
+            <Title>{title}</Title>
+            <Body>{body}</Body>
+        </Note>
 }
