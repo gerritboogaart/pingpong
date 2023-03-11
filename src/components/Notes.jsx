@@ -49,7 +49,7 @@ export const Notes = ({bg, body, zindex, left, top, title}) => {
         }}
         onDragStart={(e) => {
             console.log('start', e)
-            // setDisplay('none')
+            setDisplay('block')
 
 
         }}
