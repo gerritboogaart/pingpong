@@ -1,0 +1,9 @@
+{
+    "editor.formatOnSave": true,
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/c985db7f-a3df-4c90-994e-1a1eabfe1571/resourceGroups/PingPongExpress_group/providers/Microsoft.Web/sites/PingPongExpress",
+    "appService.deploySubpath": "."
+}
